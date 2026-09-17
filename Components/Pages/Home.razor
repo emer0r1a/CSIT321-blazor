@@ -1,0 +1,311 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+
+<PageTitle>Hearthstone — Find Your Dream Home</PageTitle>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<div class="home-page">
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="logo-mark"></span>Hearthstone</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Service</a>
+      <a href="#">Agents</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <span class="nav-icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </span>
+      <a href="/register" class="btn btn-dark">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero-section">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-title">Find Your<br>Dream Home</h1>
+        <p class="hero-desc">Discover modern houses, family estates, and sunlit retreats designed for the way you want to live.</p>
+        <a href="/register" class="btn btn-dark">Sign up</a>
+      </div>
+      <div class="hero-img-wrap"><img src="images/img1.png"/></div>
+    </div>
+
+    <div class="search-bar">
+      <div class="search-field">Location
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      </div>
+      <div class="search-field">Type
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+      </div>
+      <div class="search-field">Price Range
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9.5c0-1.4-1.4-2.5-3-2.5s-3 1.1-3 2.5 1.4 2.5 3 2.5 3 1.1 3 2.5-1.4 2.5-3 2.5-3-1.1-3-2.5"/></svg></span>
+      </div>
+      <a href="/register" class="btn btn-dark">Sign up</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INTRO / STATS ===================== -->
+<section class="intro-section">
+  <div class="wrap intro-grid">
+    <div class="intro-img"><img src="images/img2.png" alt="Dream Home" /></div>
+    <div>
+      <h2 class="intro-title">We Help You To Find<br>Your Dream Home</h2>
+      <p class="intro-desc">From cozy cottages to luxurious estates, our dedicated team guides you through every step of the journey, ensuring your dream home becomes a reality</p>
+      <div class="stats-row">
+        <div>
+          <div class="stat-num">8K+</div>
+          <div class="stat-label">Houses Available</div>
+        </div>
+        <div>
+          <div class="stat-num">6K+</div>
+          <div class="stat-label">Houses Sold</div>
+        </div>
+        <div>
+          <div class="stat-num">2K+</div>
+          <div class="stat-label">Trusted Agents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY CHOOSE US ===================== -->
+<section class="why-section">
+  <div class="wrap">
+    <h2 class="why-title">Why Choose Us</h2>
+    <p class="why-desc">Elevating Your Home Buying Experience with Expertise, Integrity, and Unmatched Personalized Service</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><img src="images/map pin.png" alt="Dream Home" /></div>
+        <h3>Expert Guidance</h3>
+        <p>Benefit from our team's seasoned expertise for a smooth buying experience</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><img src="images/service.png" alt="Dream Home" /></div>
+        <h3>Personalized Service</h3>
+        <p>Our services adapt to your unique needs, making your journey stress-free</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><img src="images/document.png" alt="Dream Home" /></div>
+        <h3>Transparent Process</h3>
+        <p>Stay informed with our clear and honest approach to buying your home</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><img src="images/user.png" alt="Dream Home" /></div>
+        <h3>Exceptional Support</h3>
+        <p>Providing peace of mind with our responsive and attentive customer service</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED LISTINGS ===================== -->
+<section class="listings-section">
+  <div class="wrap">
+    <div class="listings-head">
+      <div>
+        <div class="eyebrow">FEATURED LISTINGS</div>
+        <h2 class="listings-title">Handpicked homes with character, comfort, and space to grow</h2>
+        <p class="listings-desc">From sun-drenched family houses to refined modern retreats, these featured properties are designed to feel like home from day one.</p>
+      </div>
+      <button class="btn btn-outline">View all listings</button>
+    </div>
+
+    <div class="listings-grid">
+      <div class="listing-card">
+        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Price drop</span></div>
+        <div class="listing-body">
+          <div class="listing-location">
+            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            San Francisco, California
+          </div>
+          <div class="listing-meta">
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>4 Rooms</span>
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>3,500 sq ft</span>
+          </div>
+          <div class="listing-foot">
+            <a href="/register" class="btn btn-dark">Sign up</a>
+            <div class="listing-price">$2,500,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Open House</span></div>
+        <div class="listing-body">
+          <div class="listing-location">
+            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            Beverly Hills, California
+          </div>
+          <div class="listing-meta">
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>3 Rooms</span>
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>1,500 sq ft</span>
+          </div>
+          <div class="listing-foot">
+            <a href="/register" class="btn btn-dark">Sign up</a>
+            <div class="listing-price">$850,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Price drop</span></div>
+        <div class="listing-body">
+          <div class="listing-location">
+            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            Palo Alto, California
+          </div>
+          <div class="listing-meta">
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>6 Rooms</span>
+            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>4,000 sq ft</span>
+          </div>
+          <div class="listing-foot">
+            <a href="/register" class="btn btn-dark">Sign up</a>
+            <div class="listing-price">$3,700,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testimonial-section">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center;">TRUSTED BY HOMEOWNERS &amp; BUYERS</div>
+    <h2 class="testimonial-title">Curated homes offering unique charm, cozy comfort, and plenty of room to grow</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
+        <div class="testimonial-body">
+          <div class="t-user-row">
+            <div class="avatar"><div class="ph-img"></div></div>
+            <div class="t-user-info">
+              <div class="t-name">Sarah Nguyen</div>
+              <div class="t-loc">San Francisco</div>
+            </div>
+            <div class="t-rating">★ 5.0</div>
+          </div>
+          <p class="t-text">Dwello truly cares about their clients. They listened to my needs and preferences and helped me find the perfect home in the Bay Area. Their professionalism and attention to detail are unmatched.</p>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
+        <div class="testimonial-body">
+          <div class="t-user-row">
+            <div class="avatar"><div class="ph-img"></div></div>
+            <div class="t-user-info">
+              <div class="t-name">Michael Rodriguez</div>
+              <div class="t-loc">San Diego</div>
+            </div>
+            <div class="t-rating">★ 4.5</div>
+          </div>
+          <p class="t-text">I had a fantastic experience working with Dwello. Their expertise and personalized service exceeded my expectations. I found my dream home quickly and smoothly. Highly recommended!</p>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
+        <div class="testimonial-body">
+          <div class="t-user-row">
+            <div class="avatar"><div class="ph-img"></div></div>
+            <div class="t-user-info">
+              <div class="t-name">Emily Johnson</div>
+              <div class="t-loc">Los Angeles</div>
+            </div>
+            <div class="t-rating">★ 5.0</div>
+          </div>
+          <p class="t-text">Dwello made my dream of owning a home a reality! Their team provided exceptional support and guided me through every step of the process. I couldn't be happier with my new home!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-dots">
+      <button class="carousel-btn">‹</button>
+      <button class="carousel-btn">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA / NEWSLETTER ===================== -->
+<section class="cta-section">
+  <div class="wrap">
+    <h2 class="cta-title">Do You Have Any Questions?<br>Get Help From Us</h2>
+    <div class="cta-links">
+      <span><span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Chat live with our support team</span>
+      <span><span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Browse our FAQ</span>
+    </div>
+    <div class="newsletter-form">
+      <div class="newsletter-input">
+        <span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>
+        Enter your email address...
+      </div>
+      <button class="btn btn-dark">Submit</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><span class="logo-mark"></span>Hearthstone</div>
+        <p class="footer-desc">Bringing you closer to your dream home, one click at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <ul>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Social</h4>
+        <ul>
+          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><a href="#">Instagram</a></li>
+          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><a href="#">Facebook</a></li>
+          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></span><a href="#">Twitter (X)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Hearthstone. All rights reserved.</div>
+  </div>
+</footer>
+
+</div>
+

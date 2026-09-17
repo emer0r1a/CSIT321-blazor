@@ -1,0 +1,80 @@
+@page "/register"
+@inject NavigationManager Navigation
+
+<PageTitle>Hearthstone — Create your account</PageTitle>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<div class="page">
+    <!-- LEFT: Hero image side -->
+    <div class="hero">
+        <span class="badge">Curated homes across premium neighborhoods</span>
+
+        <div class="hero-bottom">
+            <div class="hero-title">Start Your<br>Journey Home</div>
+            <p class="hero-desc">Create your Hearthstone account to save listings, explore neighborhoods, and move closer to the home you've been imagining.</p>
+            <div class="hero-pills">
+                <span class="pill"><span class="icon-dot"></span>1,240 homes available</span>
+                <span class="pill"><span class="icon-dot"></span>Top-rated agents nearby</span>
+                <span class="pill"><span class="icon-dot"></span>New listings added daily</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Form side -->
+    <div class="form-side">
+        <div class="form-wrap">
+            <div class="logo">
+                <span class="logo-mark"></span>
+                <a href="/">Hearthstone</a>
+            </div>
+
+            <h1 class="welcome">Create your account</h1>
+            <p class="subtext">Join Hearthstone to save homes, track neighborhoods, and stay updated on your move.</p>
+
+            <div class="panel">
+                <div class="field">
+                    <label for="fullname">Full name</label>
+                    <input type="text" id="fullname" placeholder="Jane Doe" />
+                </div>
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" placeholder="name@@email.com" />
+                </div>
+                <div class="field">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" placeholder="(555) 123-4567" />
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password" />
+                </div>
+                <div class="field" style="margin-bottom:0;">
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm password" />
+                </div>
+
+                <button class="btn-primary" style="margin-top:20px;">Create Account</button>
+
+                <div class="agree-row">
+                    <input type="checkbox" id="agree" checked />
+                    <label for="agree">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+                </div>
+
+                <div class="divider">
+                    <span class="line"></span>
+                    <span>or sign up with</span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="social-row">
+                    <button class="social-btn"><img src="images/email.png"/>Email</button>
+                    <button class="social-btn"><img src="images/facebook.png"/>Facebook</button>
+                </div>
+            </div>
+
+            <p class="signup-line">Already have an account? <a href="/login">Sign in</a></p>
+        </div>
+    </div>
+</div>
