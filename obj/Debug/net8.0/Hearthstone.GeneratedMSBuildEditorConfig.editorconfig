@@ -22,8 +22,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/AuthLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdXRoTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/FormField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGb3JtRmllbGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/Icon.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJY29uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/Login.razor]
@@ -32,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWdpc3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Pages/Ui.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVaS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [Z:/L23Y16W36/Hearthstone/Hearthstone/Components/Routes.razor]

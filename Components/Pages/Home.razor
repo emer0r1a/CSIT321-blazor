@@ -12,7 +12,7 @@
 <header class="sticky top-0 z-40 border-b border-[#241812]/5 backdrop-blur">
   <div class="@Ui.Wrap flex h-[72px] items-center justify-between">
     <a href="#top" class="flex items-center gap-2 text-[19px] font-bold">
-      <span class="h-4 w-[18px] bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
+      <span class="text-[#241812]/70 h-4 w-[18px] bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
     </a>
     <nav class="hidden items-center gap-9 text-sm font-semibold lg:flex">
       @foreach (var (label, href) in nav)
@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <!-- Search filters -->
+    <!-- Search: filters the listings below -->
     <div class="relative z-10 mx-auto mt-12 grid max-w-[960px] gap-3 rounded-2xl bg-[#DDC7BB] p-3 shadow-[0_24px_50px_-28px_rgba(36,24,18,0.55)] sm:grid-cols-2 lg:translate-y-1/2 lg:grid-cols-[1fr_1fr_1fr_auto]">
       <label class="@SearchBox">
         <Icon Name="pin" Class="size-[18px] shrink-0 text-[#7a5340]" />
@@ -349,6 +349,7 @@
 
     static readonly System.Globalization.CultureInfo Us = new("en-US");
 
+    // UI state
     bool menuOpen, subscribed;
     int tIdx, openFaq = -1;
     string loc = "", ty = "", price = "", newsEmail = "";
@@ -376,6 +377,7 @@
     void Subscribe()
     {
         newsError = Ui.IsEmail(newsEmail) ? null : "Enter a valid email address.";
+        // TODO: send newsEmail to your newsletter service
         subscribed = newsError is null;
     }
 

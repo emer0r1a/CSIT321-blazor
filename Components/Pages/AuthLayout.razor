@@ -1,0 +1,89 @@
+<HeadContent>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</HeadContent>
+
+<div class="flex min-h-screen flex-col text-[#241812] lg:flex-row" style="font-family:'Montserrat',sans-serif">
+    <!-- LEFT: illustrated hero -->
+    <div class="relative flex min-h-[420px] flex-[1_1_50%] flex-col justify-between overflow-hidden bg-[linear-gradient(180deg,#4a3428_0%,#241812_100%)] p-8 text-white sm:p-10 lg:min-h-screen">
+        <svg class="pointer-events-none absolute inset-0 size-full" viewBox="0 0 600 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <circle cx="440" cy="240" r="175" fill="#c8703a" opacity=".12" />
+            <circle cx="440" cy="240" r="105" fill="#c8703a" opacity=".9" />
+            <path d="M-20 700 120 560l140 140v120H-20z" fill="#33231b" />
+            <path d="M220 720l160-160 160 160v100H220z" fill="#2b1d16" />
+            <path d="M430 700l130-120 130 120v120H430z" fill="#33231b" />
+            <g fill="#e9a869">
+                <rect x="95" y="705" width="30" height="40" rx="3" />
+                <rect x="345" y="725" width="34" height="42" rx="3" />
+                <rect x="545" y="695" width="28" height="38" rx="3" />
+            </g>
+        </svg>
+        <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,12,0.1),rgba(20,16,12,0.6))]"></div>
+
+        <span class="relative inline-flex items-center gap-2 self-start rounded-full border border-white/40 bg-black/15 px-[18px] py-2.5 text-[13px] font-medium backdrop-blur-sm">
+            <Icon Name="pin" Class="size-4" />Curated homes across premium neighborhoods
+        </span>
+
+        <div class="relative flex max-w-[560px] flex-col gap-[22px]">
+            <div class="text-[40px] font-extrabold leading-[1.05] tracking-[-0.03em] lg:text-[56px]">@HeroTitle1<br>@HeroTitle2</div>
+            <p class="max-w-[480px] text-base font-medium leading-[1.55] text-white/90">@HeroText</p>
+            <div class="mt-1 flex flex-wrap gap-3">
+                @foreach (var (icon, text) in pills)
+                {
+                    <span class="inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/20 px-4 py-[9px] text-[13px] font-medium"><Icon Name="@icon" Class="size-4 text-[#e9a869]" />@text</span>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="flex flex-[1_1_50%] flex-col items-center justify-center bg-[#f6ece1] px-6 py-10 lg:px-10 lg:py-[60px]">
+        <div class="w-full max-w-[420px]">
+            <a href="/" class="mb-9 flex w-fit items-center gap-2 text-xl font-bold">
+                <span class="inline-block h-[18px] w-5 bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
+            </a>
+
+            <h1 class="mb-3.5 text-[34px] font-extrabold tracking-[-0.02em]">@Title</h1>
+            <p class="mb-[30px] text-[14.5px] font-medium leading-[1.55] text-[#6b5d52]">@Subtitle</p>
+
+            <div class="rounded-[22px] bg-[#ddc4ac] px-6 pb-[30px] pt-[34px] shadow-[0_24px_50px_-28px_rgba(36,24,18,0.55)] sm:px-8">
+                @ChildContent
+
+                @if (ShowSocial)
+                {
+                    <div class="mb-[18px] mt-6 flex items-center gap-3.5">
+                        <span class="h-px flex-1 bg-black/[0.18]"></span>
+                        <span class="whitespace-nowrap text-[12.5px] font-medium text-[#6b5d52]">@SocialLabel</span>
+                        <span class="h-px flex-1 bg-black/[0.18]"></span>
+                    </div>
+                    <div class="flex gap-3.5">
+                        <button type="button" class="@Social"><Icon Name="mail" Class="size-[17px]" />Email</button>
+                        <button type="button" class="@Social"><Icon Name="facebook" Class="size-[17px]" />Facebook</button>
+                    </div>
+                }
+            </div>
+
+            <p class="mt-[26px] text-center text-sm font-medium">@Footer</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string HeroTitle1 { get; set; } = "";
+    [Parameter] public string HeroTitle2 { get; set; } = "";
+    [Parameter] public string HeroText { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Subtitle { get; set; } = "";
+    [Parameter] public string SocialLabel { get; set; } = "or continue with";
+    [Parameter] public bool ShowSocial { get; set; } = true;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+
+    const string Social = "flex flex-1 cursor-pointer items-center justify-center gap-[9px] rounded-xl bg-[#efe3d5] p-[13px] text-sm font-semibold transition hover:bg-white focus-visible:outline-2 focus-visible:outline-[#c8703a]";
+
+    static readonly (string, string)[] pills =
+    {
+        ("home", "1,240 homes available"),
+        ("star", "Top-rated agents nearby"),
+        ("pin", "New listings added daily"),
+    };
+}

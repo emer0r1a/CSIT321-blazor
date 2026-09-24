@@ -1,0 +1,23 @@
+@code {
+    public const string Wrap = "mx-auto max-w-[1200px] px-5 lg:px-10";
+
+    const string Btn = "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8703a] motion-safe:active:scale-[0.98]";
+    public const string BtnDark = Btn + " bg-[#241812] px-6 py-3.5 text-sm text-white hover:bg-[#c8703a]";
+    public const string BtnDarkSm = Btn + " bg-[#241812] px-4 py-2.5 text-[13px] text-white hover:bg-[#c8703a]";
+    public const string BtnDarkLg = Btn + " bg-[#241812] px-6 py-4 text-[15px] text-white hover:bg-[#c8703a]";
+    public const string BtnLight = Btn + " border border-[#241812]/20 px-6 py-3.5 text-sm text-[#241812] hover:border-[#241812] hover:bg-[#241812] hover:text-white";
+
+    public const string H1 = "text-[44px] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-[56px] lg:text-[64px]";
+    public const string H2 = "text-[30px] font-extrabold leading-[1.15] tracking-[-0.02em] sm:text-[36px]";
+    public const string Muted = "text-[15px] font-medium leading-[1.65] text-[#6b5d52]";
+    public const string Img = "block size-full object-cover";
+    public const string Lift = "transition duration-300 motion-safe:hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(36,24,18,0.4)]";
+
+    public const string Label = "mb-2 block text-[13.5px] font-semibold text-[#241812]";
+    public const string FieldBase = "w-full rounded-xl border bg-[#efe3d5] px-4 py-3.5 text-[14.5px] font-medium text-[#241812] outline-none transition placeholder:text-[#b3987d] focus:border-[#241812]/40 focus:bg-white focus:ring-4 focus:ring-[#c8703a]/20";
+    public const string Field = FieldBase + " border-transparent";
+    public const string FieldIcon = "w-full rounded-xl border border-dark/20 bg-white py-3.5 pl-11 pr-4 text-[14.5px] font-medium text-[#241812] outline-none transition placeholder:text-[#b3987d] focus:border-[#c8703a] focus:ring-4 focus:ring-[#c8703a]/20";
+    public const string Check = "relative mt-px size-[18px] min-w-[18px] shrink-0 cursor-pointer appearance-none rounded-[5px] border border-[#241812]/30 bg-white transition checked:border-[#241812] checked:bg-[#241812] after:absolute after:left-[5px] after:top-0.5 after:hidden after:h-[9px] after:w-[5px] after:rotate-45 after:border-b-2 after:border-r-2 after:border-white after:content-[''] checked:after:block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8703a]";
+
+    public static bool IsEmail(string? s) => !string.IsNullOrWhiteSpace(s) && System.Net.Mail.MailAddress.TryCreate(s.Trim(), out var a) && a.Address == s.Trim() && s.Contains('.');
+}
