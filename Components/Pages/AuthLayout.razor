@@ -3,7 +3,7 @@
 </HeadContent>
 
 <div class="flex min-h-screen flex-col text-[#241812] lg:flex-row" style="font-family:'Montserrat',sans-serif">
-    <!-- LEFT: illustrated hero -->
+    
     <div class="relative flex min-h-[420px] flex-[1_1_50%] flex-col justify-between overflow-hidden bg-[linear-gradient(180deg,#4a3428_0%,#241812_100%)] p-8 text-white sm:p-10 lg:min-h-screen">
         <svg class="pointer-events-none absolute inset-0 size-full" viewBox="0 0 600 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
             <circle cx="440" cy="240" r="175" fill="#c8703a" opacity=".12" />
@@ -35,29 +35,28 @@
         </div>
     </div>
 
-    <!-- RIGHT: form -->
-    <div class="flex flex-[1_1_50%] flex-col items-center justify-center bg-[#f6ece1] px-6 py-10 lg:px-10 lg:py-[60px]">
-        <div class="w-full max-w-[420px]">
-            <a href="/" class="mb-9 flex w-fit items-center gap-2 text-xl font-bold">
-                <span class="inline-block h-[18px] w-5 bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
+    <div class="text-dark flex flex-[1_1_50%] flex-col items-center justify-center bg-[#f6ece1] px-6 py-10 lg:px-10 lg:py-[60px]">
+        <div class="text-dark w-full max-w-[420px]">
+            <a href="/" class="text-dark mb-9 flex w-fit items-center gap-2 text-xl font-bold">
+                <span class="text-dark inline-block h-[18px] w-5 bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
             </a>
 
             <h1 class="mb-3.5 text-[34px] font-extrabold tracking-[-0.02em]">@Title</h1>
             <p class="mb-[30px] text-[14.5px] font-medium leading-[1.55] text-[#6b5d52]">@Subtitle</p>
 
-            <div class="rounded-[22px] bg-[#ddc4ac] px-6 pb-[30px] pt-[34px] shadow-[0_24px_50px_-28px_rgba(36,24,18,0.55)] sm:px-8">
+            <div class="text-dark rounded-[22px] bg-[#ddc4ac] px-6 pb-[30px] pt-[34px] shadow-[0_24px_50px_-28px_rgba(36,24,18,0.55)] sm:px-8">
                 @ChildContent
 
                 @if (ShowSocial)
                 {
-                    <div class="mb-[18px] mt-6 flex items-center gap-3.5">
+                    <div class="text-dark mb-[18px] mt-6 flex items-center gap-3.5">
                         <span class="h-px flex-1 bg-black/[0.18]"></span>
                         <span class="whitespace-nowrap text-[12.5px] font-medium text-[#6b5d52]">@SocialLabel</span>
                         <span class="h-px flex-1 bg-black/[0.18]"></span>
                     </div>
                     <div class="flex gap-3.5">
-                        <button type="button" class="@Social"><Icon Name="mail" Class="size-[17px]" />Email</button>
-                        <button type="button" class="@Social"><Icon Name="facebook" Class="size-[17px]" />Facebook</button>
+                        <button type="button" class="@Social"><Icon Name="mail" Class="text-dark size-[17px]" />Email</button>
+                        <button type="button" class="@Social"><Icon Name="facebook" Class="text-dark size-[17px]" />Facebook</button>
                     </div>
                 }
             </div>

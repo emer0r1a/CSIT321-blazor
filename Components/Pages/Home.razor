@@ -11,7 +11,7 @@
 <!-- ===================== HEADER ===================== -->
 <header class="sticky top-0 z-40 border-b border-[#241812]/5 backdrop-blur">
   <div class="@Ui.Wrap flex h-[72px] items-center justify-between">
-    <a href="#top" class="flex items-center gap-2 text-[19px] font-bold">
+    <a href="#top" class="text-dark flex items-center gap-2 text-[19px] font-bold">
       <span class="text-[#241812]/70 h-4 w-[18px] bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
     </a>
     <nav class="hidden items-center gap-9 text-sm font-semibold lg:flex">
@@ -21,7 +21,7 @@
       }
     </nav>
     <div class="flex items-center gap-2">
-      <a href="/login" class="hidden px-3 py-2 text-sm font-semibold transition hover:text-[#c8703a] sm:block">Sign in</a>
+      <a href="/login" class="text-dark hidden px-3 py-2 text-sm font-semibold transition hover:text-[#c8703a] sm:block">Sign in</a>
       <a href="/register" class="@Ui.BtnDarkSm">Sign up</a>
       <button type="button" class="grid size-10 place-items-center rounded-lg transition hover:bg-[#241812]/5 lg:hidden"
               aria-label="Toggle menu" aria-expanded="@(menuOpen ? "true" : "false")" @onclick="() => menuOpen = !menuOpen">
@@ -266,9 +266,9 @@
 <section id="contact" class="bg-[#e7d3bc]/60 py-20 text-center">
   <div class="@Ui.Wrap">
     <h2 class="@Ui.H2">Do you have any questions?<br>Get help from us</h2>
-    <div class="mb-9 mt-6 flex flex-wrap justify-center gap-x-9 gap-y-3 text-sm font-semibold">
-      <a href="mailto:support@hearthstone.example" class="inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="mail" Class="size-4" />Email our support team</a>
-      <a href="#faq" class="inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="file" Class="size-4" />Browse our FAQ</a>
+    <div class="text-dark mb-9 mt-6 flex flex-wrap justify-center gap-x-9 gap-y-3 text-sm font-semibold">
+      <a href="mailto:support@hearthstone.example" class="text-gray-500 inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="mail" Class="size-4" />Email our support team</a>
+      <a href="#faq" class="text-gray-500 inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="file" Class="size-4" />Browse our FAQ</a>
     </div>
     @if (subscribed)
     {
@@ -313,7 +313,7 @@
           <ul class="flex flex-col gap-3.5">
             @foreach (var link in links)
             {
-              <li><a class="text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#">@link</a></li>
+              <li><a class="text-dark text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#">@link</a></li>
             }
           </ul>
         </div>
@@ -323,14 +323,14 @@
         <ul class="flex flex-col gap-3.5">
           @foreach (var (icon, label) in socials)
           {
-            <li><a class="flex items-center gap-2 text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#"><Icon Name="@icon" Class="size-[15px]" />@label</a></li>
+            <li><a class="text-dark flex items-center gap-2 text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#"><Icon Name="@icon" Class="size-[15px]" />@label</a></li>
           }
         </ul>
       </div>
     </div>
     <div class="flex flex-col items-center justify-between gap-3 pt-[22px] text-[12.5px] font-medium text-[#6b5d52] sm:flex-row">
       <span>© @DateTime.Now.Year Hearthstone. All rights reserved.</span>
-      <a href="#top" class="inline-flex items-center gap-1.5 font-semibold transition hover:text-[#241812]">Back to top <Icon Name="arrow-up" Class="size-3.5" /></a>
+      <a href="#top" class="text-gray-500 inline-flex items-center gap-1.5 font-semibold transition hover:text-[#241812]">Back to top <Icon Name="arrow-up" Class="size-3.5" /></a>
     </div>
   </div>
 </footer>

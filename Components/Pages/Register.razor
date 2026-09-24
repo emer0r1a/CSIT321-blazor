@@ -59,7 +59,6 @@
         if (pw2 != pw) errors["pw2"] = "Passwords don't match.";
         if (!agree) errors["agree"] = "Accept the terms to continue.";
 
-        // TODO: call your registration service here when errors.Count == 0
         done = errors.Count == 0;
     }
 }

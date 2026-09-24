@@ -25,7 +25,7 @@
                 <FormField Id="password" Label="Password" Type="password" Placeholder="Password" Autocomplete="current-password" @bind-Value="pw" Error="@Err("pw")" />
 
                 <button type="submit" class="@Ui.BtnDarkLg w-full">Sign in</button>
-                <div class="mt-4 text-center text-[13px] font-semibold"><a href="#" class="hover:text-[#c8703a]">Forgot password?</a></div>
+                <div class="text-dark mt-4 text-center text-[13px] font-semibold"><a href="#" class="hover:text-[#c8703a] text-dark">Forgot password?</a></div>
             </form>
         }
     </ChildContent>
@@ -45,7 +45,6 @@
         if (!Ui.IsEmail(email)) errors["email"] = "Enter a valid email address.";
         if (string.IsNullOrEmpty(pw)) errors["pw"] = "Enter your password.";
 
-        // TODO: call your sign-in service here when errors.Count == 0
         done = errors.Count == 0;
     }
 }
