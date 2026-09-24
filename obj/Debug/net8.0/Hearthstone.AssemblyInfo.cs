@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hearthstone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fd3ac771c34a7330bf31578695fcbda12c65fba")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hearthstone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hearthstone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

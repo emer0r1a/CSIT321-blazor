@@ -1,80 +1,65 @@
 @page "/register"
-@inject NavigationManager Navigation
+@rendermode InteractiveServer
 
 <PageTitle>Hearthstone — Create your account</PageTitle>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<div class="page">
-    <!-- LEFT: Hero image side -->
-    <div class="hero">
-        <span class="badge">Curated homes across premium neighborhoods</span>
-
-        <div class="hero-bottom">
-            <div class="hero-title">Start Your<br>Journey Home</div>
-            <p class="hero-desc">Create your Hearthstone account to save listings, explore neighborhoods, and move closer to the home you've been imagining.</p>
-            <div class="hero-pills">
-                <span class="pill"><span class="icon-dot"></span>1,240 homes available</span>
-                <span class="pill"><span class="icon-dot"></span>Top-rated agents nearby</span>
-                <span class="pill"><span class="icon-dot"></span>New listings added daily</span>
+<AuthLayout HeroTitle1="Start your" HeroTitle2="journey home"
+            HeroText="Create your Hearthstone account to save listings, explore neighborhoods, and move closer to the home you've been imagining."
+            Title="Create your account"
+            Subtitle="Join Hearthstone to save homes, track neighborhoods, and stay updated on your move."
+            SocialLabel="or sign up with" ShowSocial="@(!done)">
+    <ChildContent>
+        @if (done)
+        {
+            <div class="py-6 text-center" role="status">
+                <span class="mx-auto grid size-14 place-items-center rounded-full bg-[#241812] text-white"><Icon Name="check" Class="size-7" /></span>
+                <h2 class="mt-4 text-xl font-extrabold">Welcome, @(name.Trim().Split(' ')[0])!</h2>
+                <p class="mt-1.5 text-sm font-medium text-[#6b5d52]">Your account is ready. Start saving homes you love.</p>
+                <a href="/" class="@Ui.BtnDark mt-6">Start browsing</a>
             </div>
-        </div>
-    </div>
+        }
+        else
+        {
+            <form @onsubmit="Submit" novalidate>
+                <FormField Id="fullname" Label="Full name" Placeholder="Jane Doe" Autocomplete="name" @bind-Value="name" Error="@Err("name")" />
+                <FormField Id="email" Label="Email address" Type="email" Placeholder="@("name@email.com")" Autocomplete="email" @bind-Value="email" Error="@Err("email")" />
+                <FormField Id="phone" Label="Phone number" Type="tel" Placeholder="(555) 123-4567" Autocomplete="tel" @bind-Value="phone" />
+                <FormField Id="password" Label="Password" Type="password" Placeholder="At least 8 characters" Autocomplete="new-password" @bind-Value="pw" Error="@Err("pw")" />
+                <FormField Id="confirm-password" Label="Confirm password" Type="password" Placeholder="Confirm password" Autocomplete="new-password" @bind-Value="pw2" Error="@Err("pw2")" />
 
-    <!-- RIGHT: Form side -->
-    <div class="form-side">
-        <div class="form-wrap">
-            <div class="logo">
-                <span class="logo-mark"></span>
-                <a href="/">Hearthstone</a>
-            </div>
+                <label class="flex cursor-pointer items-start gap-2.5">
+                    <input type="checkbox" @bind="agree" class="@Ui.Check" />
+                    <span class="text-[13px] font-medium leading-normal">I agree to the <a class="font-bold underline-offset-2 hover:underline" href="#">Terms of Service</a> and <a class="font-bold underline-offset-2 hover:underline" href="#">Privacy Policy</a>.</span>
+                </label>
+                @if (Err("agree") is { } agreeError)
+                {
+                    <p class="mt-1.5 text-[12.5px] font-medium text-red-700" role="alert">@agreeError</p>
+                }
 
-            <h1 class="welcome">Create your account</h1>
-            <p class="subtext">Join Hearthstone to save homes, track neighborhoods, and stay updated on your move.</p>
+                <button type="submit" class="@Ui.BtnDarkLg mt-5 w-full">Create account</button>
+            </form>
+        }
+    </ChildContent>
+    <Footer>Already have an account? <a class="font-bold text-[#c8703a] hover:underline" href="/login">Sign in</a></Footer>
+</AuthLayout>
 
-            <div class="panel">
-                <div class="field">
-                    <label for="fullname">Full name</label>
-                    <input type="text" id="fullname" placeholder="Jane Doe" />
-                </div>
-                <div class="field">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" placeholder="name@@email.com" />
-                </div>
-                <div class="field">
-                    <label for="phone">Phone number</label>
-                    <input type="tel" id="phone" placeholder="(555) 123-4567" />
-                </div>
-                <div class="field">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password" />
-                </div>
-                <div class="field" style="margin-bottom:0;">
-                    <label for="confirm-password">Confirm password</label>
-                    <input type="password" id="confirm-password" placeholder="Confirm password" />
-                </div>
+@code {
+    string name = "", email = "", phone = "", pw = "", pw2 = "";
+    bool agree, done;
+    readonly Dictionary<string, string> errors = new();
 
-                <button class="btn-primary" style="margin-top:20px;">Create Account</button>
+    string? Err(string key) => errors.GetValueOrDefault(key);
 
-                <div class="agree-row">
-                    <input type="checkbox" id="agree" checked />
-                    <label for="agree">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
-                </div>
+    void Submit()
+    {
+        errors.Clear();
+        if (string.IsNullOrWhiteSpace(name)) errors["name"] = "Enter your full name.";
+        if (!Ui.IsEmail(email)) errors["email"] = "Enter a valid email address.";
+        if (pw.Length < 8) errors["pw"] = "Use at least 8 characters.";
+        if (pw2 != pw) errors["pw2"] = "Passwords don't match.";
+        if (!agree) errors["agree"] = "Accept the terms to continue.";
 
-                <div class="divider">
-                    <span class="line"></span>
-                    <span>or sign up with</span>
-                    <span class="line"></span>
-                </div>
-
-                <div class="social-row">
-                    <button class="social-btn"><img src="images/email.png"/>Email</button>
-                    <button class="social-btn"><img src="images/facebook.png"/>Facebook</button>
-                </div>
-            </div>
-
-            <p class="signup-line">Already have an account? <a href="/login">Sign in</a></p>
-        </div>
-    </div>
-</div>
+        // TODO: call your registration service here when errors.Count == 0
+        done = errors.Count == 0;
+    }
+}

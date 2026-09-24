@@ -1,66 +1,51 @@
 @page "/login"
-@inject NavigationManager Navigation
+@rendermode InteractiveServer
 
 <PageTitle>Hearthstone — Welcome back</PageTitle>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<div class="page">
-    <!-- LEFT: Hero image side -->
-    <div class="hero">
-        <span class="badge">Curated homes across premium neighborhoods</span>
-
-        <div class="hero-bottom">
-            <div class="hero-title">Discover Your<br>Next Home</div>
-            <p class="hero-desc">Explore handpicked properties and welcoming neighborhoods, and take the next step in your journey with total peace of mind.</p>
-            <div class="hero-pills">
-                <span class="pill"><span class="icon-dot"></span>1,240 homes available</span>
-                <span class="pill"><span class="icon-dot"></span>Top-rated agents nearby</span>
-                <span class="pill"><span class="icon-dot"></span>New listings added daily</span>
+<AuthLayout HeroTitle1="Discover your" HeroTitle2="next home"
+            HeroText="Explore handpicked properties and welcoming neighborhoods, and take the next step in your journey with total peace of mind."
+            Title="Welcome back"
+            Subtitle="Sign in to manage saved homes, schedule tours, and continue your search."
+            SocialLabel="or continue with" ShowSocial="@(!done)">
+    <ChildContent>
+        @if (done)
+        {
+            <div class="py-6 text-center" role="status">
+                <span class="mx-auto grid size-14 place-items-center rounded-full bg-[#241812] text-white"><Icon Name="check" Class="size-7" /></span>
+                <h2 class="mt-4 text-xl font-extrabold">You're signed in</h2>
+                <p class="mt-1.5 text-sm font-medium text-[#6b5d52]">Good to see you again, @email.</p>
+                <a href="/" class="@Ui.BtnDark mt-6">Continue searching</a>
             </div>
-        </div>
-    </div>
+        }
+        else
+        {
+            <form @onsubmit="Submit" novalidate>
+                <FormField Id="email" Label="Email address" Type="email" Placeholder="@("name@email.com")" Autocomplete="email" @bind-Value="email" Error="@Err("email")" />
+                <FormField Id="password" Label="Password" Type="password" Placeholder="Password" Autocomplete="current-password" @bind-Value="pw" Error="@Err("pw")" />
 
-    <!-- RIGHT: Form side -->
-    <div class="form-side">
-        <div class="form-wrap">
-            <div class="logo">
-                <span class="logo-mark"></span>
-                <a href="/">Hearthstone</a>
-            </div>
-            
+                <button type="submit" class="@Ui.BtnDarkLg w-full">Sign in</button>
+                <div class="mt-4 text-center text-[13px] font-semibold"><a href="#" class="hover:text-[#c8703a]">Forgot password?</a></div>
+            </form>
+        }
+    </ChildContent>
+    <Footer>Don't have an account? <a class="font-bold text-[#c8703a] hover:underline" href="/register">Sign up</a></Footer>
+</AuthLayout>
 
-            <h1 class="welcome">Welcome back</h1>
-            <p class="subtext">Sign in to manage saved homes, schedule tours, and continue your search.</p>
+@code {
+    string email = "", pw = "";
+    bool done;
+    readonly Dictionary<string, string> errors = new();
 
-            <div class="panel">
-                <div class="field">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" placeholder="name@@email.com" />
-                </div>
-                <div class="field">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password" />
-                </div>
+    string? Err(string key) => errors.GetValueOrDefault(key);
 
-                <button class="btn-signin">Sign In</button>
+    void Submit()
+    {
+        errors.Clear();
+        if (!Ui.IsEmail(email)) errors["email"] = "Enter a valid email address.";
+        if (string.IsNullOrEmpty(pw)) errors["pw"] = "Enter your password.";
 
-                <div class="forgot"><a href="#">Forgot password?</a></div>
-
-                <div class="divider">
-                    <span class="line"></span>
-                    <span>or continue with</span>
-                    <span class="line"></span>
-                </div>
-
-                <div class="social-row">
-                    <button class="social-btn"><img src="images/email.png"/>Email</button>
-                    <button class="social-btn"><img src="images/facebook.png"/>Facebook</button>
-                </div>
-            </div>
-
-            <p class="signup-line">Don't have an account? <a href="/register">Sign up</a></p>
-        </div>
-    </div>
-</div>
+        // TODO: call your sign-in service here when errors.Count == 0
+        done = errors.Count == 0;
+    }
+}

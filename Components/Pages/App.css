@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Scan Razor files for class names (Tailwind v4 also auto-detects, this is explicit) */
+@source "../**/*.razor";
+@source "../**/*.cs";
+
+@theme {
+    --font-sans: 'Montserrat', sans-serif;
+
+    --color-cream: #f6ece1;
+    --color-panel: #ddc4ac;
+    --color-panel-light: #e7d3bc;
+    --color-field: #efe3d5;
+    --color-dark: #241812;
+    --color-orange: #c8703a;
+    --color-muted: #6b5d52;
+    --color-soft: #8a7b6e;
+}
+
+@layer base {
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}

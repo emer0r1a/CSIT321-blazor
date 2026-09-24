@@ -26,6 +26,4 @@ Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\refint\Hearthstone.dll
 Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\Hearthstone.pdb
 Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\Hearthstone.genruntimeconfig.cache
 Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\ref\Hearthstone.dll
-Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
-Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\scopedcss\Components\Pages\Login.razor.rz.scp.css
-Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\scopedcss\Components\Pages\Register.razor.rz.scp.css
+Z:\L23Y16W36\Hearthstone\Hearthstone\obj\Debug\net8.0\Hearthstone.sourcelink.json

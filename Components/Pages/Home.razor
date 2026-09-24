@@ -1,311 +1,434 @@
 ﻿@page "/"
-@inject NavigationManager Navigation
+@rendermode InteractiveServer
 
 <PageTitle>Hearthstone — Find Your Dream Home</PageTitle>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<HeadContent>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</HeadContent>
 
-<div class="home-page">
+<div id="top" class="bg-white text-[#241812]" style="font-family:'Montserrat',sans-serif">
 
 <!-- ===================== HEADER ===================== -->
-<header>
-  <div class="wrap nav">
-    <div class="logo"><span class="logo-mark"></span>Hearthstone</div>
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Service</a>
-      <a href="#">Agents</a>
-      <a href="#">Contact</a>
+<header class="sticky top-0 z-40 border-b border-[#241812]/5 backdrop-blur">
+  <div class="@Ui.Wrap flex h-[72px] items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 text-[19px] font-bold">
+      <span class="h-4 w-[18px] bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
+    </a>
+    <nav class="hidden items-center gap-9 text-sm font-semibold lg:flex">
+      @foreach (var (label, href) in nav)
+      {
+        <a href="@href" class="text-[#241812]/70 transition hover:text-[#241812]">@label</a>
+      }
     </nav>
-    <div class="nav-right">
-      <span class="nav-icon-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </span>
-      <span class="nav-icon-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-      </span>
-      <a href="/register" class="btn btn-dark">Sign up</a>
+    <div class="flex items-center gap-2">
+      <a href="/login" class="hidden px-3 py-2 text-sm font-semibold transition hover:text-[#c8703a] sm:block">Sign in</a>
+      <a href="/register" class="@Ui.BtnDarkSm">Sign up</a>
+      <button type="button" class="grid size-10 place-items-center rounded-lg transition hover:bg-[#241812]/5 lg:hidden"
+              aria-label="Toggle menu" aria-expanded="@(menuOpen ? "true" : "false")" @onclick="() => menuOpen = !menuOpen">
+        <Icon Name="@(menuOpen ? "x" : "menu")" />
+      </button>
     </div>
   </div>
+  @if (menuOpen)
+  {
+    <nav class="border-t border-[#241812]/5 px-5 py-3 lg:hidden">
+      @foreach (var (label, href) in nav)
+      {
+        <a href="@href" @onclick="() => menuOpen = false" class="block rounded-lg px-3 py-3 text-[15px] font-semibold hover:bg-[#241812]/5">@label</a>
+      }
+      <a href="/login" class="block rounded-lg px-3 py-3 text-[15px] font-semibold hover:bg-[#241812]/5">Sign in</a>
+    </nav>
+  }
 </header>
 
 <!-- ===================== HERO ===================== -->
-<section class="hero-section">
-  <div class="wrap">
-    <div class="hero-grid">
+<section class="pt-12 lg:pt-16">
+  <div class="@Ui.Wrap">
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
       <div>
-        <h1 class="hero-title">Find Your<br>Dream Home</h1>
-        <p class="hero-desc">Discover modern houses, family estates, and sunlit retreats designed for the way you want to live.</p>
-        <a href="/register" class="btn btn-dark">Sign up</a>
+        <h1 class="@Ui.H1">Find your<br>dream home</h1>
+        <p class="@Ui.Muted mb-8 mt-5 max-w-[420px]">Discover modern houses, family estates, and sunlit retreats designed for the way you want to live.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#listings" class="@Ui.BtnDark">Browse homes <Icon Name="arrow" Class="size-4" /></a>
+          <a href="/register" class="@Ui.BtnLight">Create account</a>
+        </div>
       </div>
-      <div class="hero-img-wrap"><img src="images/img1.png"/></div>
+      <div class="relative">
+        <div class="h-[320px] overflow-hidden rounded-3xl sm:h-[420px]"><img class="@Ui.Img" src="images/img1.png" alt="Sunlit modern home" /></div>
+        <div class="absolute -bottom-4 left-4 flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 shadow-[0_18px_40px_-18px_rgba(36,24,18,0.45)] sm:-left-6">
+          <span class="grid size-10 place-items-center rounded-xl bg-[#c8703a] text-white"><Icon Name="home" /></span>
+          <div>
+            <div class="text-[15px] font-extrabold">1,240 homes</div>
+            <div class="text-xs font-medium text-[#6b5d52]">New listings added daily</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="search-bar">
-      <div class="search-field">Location
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-      </div>
-      <div class="search-field">Type
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-      </div>
-      <div class="search-field">Price Range
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9.5c0-1.4-1.4-2.5-3-2.5s-3 1.1-3 2.5 1.4 2.5 3 2.5 3 1.1 3 2.5-1.4 2.5-3 2.5-3-1.1-3-2.5"/></svg></span>
-      </div>
-      <a href="/register" class="btn btn-dark">Sign up</a>
+    <!-- Search filters -->
+    <div class="relative z-10 mx-auto mt-12 grid max-w-[960px] gap-3 rounded-2xl bg-[#DDC7BB] p-3 shadow-[0_24px_50px_-28px_rgba(36,24,18,0.55)] sm:grid-cols-2 lg:translate-y-1/2 lg:grid-cols-[1fr_1fr_1fr_auto]">
+      <label class="@SearchBox">
+        <Icon Name="pin" Class="size-[18px] shrink-0 text-[#7a5340]" />
+        <span class="min-w-0 flex-1"><span class="block text-[11px] font-semibold text-[#6b5d52]">Location</span>
+          <select class="@Sel" @bind="loc"><option value="">Any location</option>@foreach (var c in cities){<option value="@c">@c</option>}</select></span>
+        <Icon Name="chevron-down" Class="size-4 shrink-0 text-[#8a7b6e]" />
+      </label>
+      <label class="@SearchBox">
+        <Icon Name="home" Class="size-[18px] shrink-0 text-[#7a5340]" />
+        <span class="min-w-0 flex-1"><span class="block text-[11px] font-semibold text-[#6b5d52]">Type</span>
+          <select class="@Sel" @bind="ty"><option value="">Any type</option>@foreach (var x in types){<option value="@x">@x</option>}</select></span>
+        <Icon Name="chevron-down" Class="size-4 shrink-0 text-[#8a7b6e]" />
+      </label>
+      <label class="@SearchBox">
+        <Icon Name="dollar" Class="size-[18px] shrink-0 text-[#7a5340]" />
+        <span class="min-w-0 flex-1"><span class="block text-[11px] font-semibold text-[#6b5d52]">Price range</span>
+          <select class="@Sel" @bind="price">
+            <option value="">Any price</option><option value="low">Under $1M</option><option value="mid">$1M – $3M</option><option value="high">Over $3M</option>
+          </select></span>
+        <Icon Name="chevron-down" Class="size-4 shrink-0 text-[#8a7b6e]" />
+      </label>
+      <a href="#listings" class="@Ui.BtnDarkLg sm:col-span-2 lg:col-span-1"><Icon Name="search" Class="size-4" />Search</a>
     </div>
   </div>
 </section>
 
 <!-- ===================== INTRO / STATS ===================== -->
-<section class="intro-section">
-  <div class="wrap intro-grid">
-    <div class="intro-img"><img src="images/img2.png" alt="Dream Home" /></div>
+<section class="bg-amber-50/50 pb-20 pt-16 lg:pb-24 lg:pt-[150px]">
+  <div class="@Ui.Wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="h-[340px] overflow-hidden rounded-3xl"><img class="@Ui.Img" src="images/img2.png" alt="A welcoming family home" /></div>
     <div>
-      <h2 class="intro-title">We Help You To Find<br>Your Dream Home</h2>
-      <p class="intro-desc">From cozy cottages to luxurious estates, our dedicated team guides you through every step of the journey, ensuring your dream home becomes a reality</p>
-      <div class="stats-row">
-        <div>
-          <div class="stat-num">8K+</div>
-          <div class="stat-label">Houses Available</div>
-        </div>
-        <div>
-          <div class="stat-num">6K+</div>
-          <div class="stat-label">Houses Sold</div>
-        </div>
-        <div>
-          <div class="stat-num">2K+</div>
-          <div class="stat-label">Trusted Agents</div>
-        </div>
+      <h2 class="@Ui.H2">We help you to find your dream home</h2>
+      <p class="@Ui.Muted mb-9 mt-4 max-w-[460px]">From cozy cottages to luxurious estates, our dedicated team guides you through every step of the journey, ensuring your dream home becomes a reality</p>
+      <div class="grid grid-cols-3 divide-x divide-[#241812]/10 rounded-2xl bg-[#e7d3bc]/60 py-5 text-center">
+        @foreach (var (num, label) in stats)
+        {
+          <div class="px-2">
+            <div class="text-[28px] font-extrabold sm:text-[32px]">@num</div>
+            <div class="text-[12.5px] font-medium text-[#6b5d52] sm:text-[13.5px]">@label</div>
+          </div>
+        }
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== WHY CHOOSE US ===================== -->
-<section class="why-section">
-  <div class="wrap">
-    <h2 class="why-title">Why Choose Us</h2>
-    <p class="why-desc">Elevating Your Home Buying Experience with Expertise, Integrity, and Unmatched Personalized Service</p>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon"><img src="images/map pin.png" alt="Dream Home" /></div>
-        <h3>Expert Guidance</h3>
-        <p>Benefit from our team's seasoned expertise for a smooth buying experience</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><img src="images/service.png" alt="Dream Home" /></div>
-        <h3>Personalized Service</h3>
-        <p>Our services adapt to your unique needs, making your journey stress-free</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><img src="images/document.png" alt="Dream Home" /></div>
-        <h3>Transparent Process</h3>
-        <p>Stay informed with our clear and honest approach to buying your home</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><img src="images/user.png" alt="Dream Home" /></div>
-        <h3>Exceptional Support</h3>
-        <p>Providing peace of mind with our responsive and attentive customer service</p>
-      </div>
+<section id="why" class="pb-24 text-center">
+  <div class="@Ui.Wrap">
+    <h2 class="@Ui.H2">Why choose us</h2>
+    <p class="@Ui.Muted mx-auto mb-12 mt-4 max-w-[560px]">Elevating your home buying experience with expertise, integrity, and unmatched personalized service</p>
+    <div class="grid gap-5 text-left sm:grid-cols-2 lg:grid-cols-4">
+      @foreach (var f in features)
+      {
+        <div class="@Ui.Lift group rounded-2xl bg-[#e7d3bc] px-[22px] py-7">
+          <div class="mb-[22px] grid size-[46px] place-items-center rounded-xl bg-[#241812] text-white transition group-hover:bg-[#c8703a]"><Icon Name="@f.Icon" Class="size-[22px]" /></div>
+          <h3 class="mb-2.5 text-[16.5px] font-bold">@f.Title</h3>
+          <p class="text-[13.5px] font-medium leading-[1.55] text-[#6b5d52]">@f.Text</p>
+        </div>
+      }
     </div>
   </div>
 </section>
 
 <!-- ===================== FEATURED LISTINGS ===================== -->
-<section class="listings-section">
-  <div class="wrap">
-    <div class="listings-head">
+@{ var results = Filtered.ToList(); }
+<section id="listings" class="bg-amber-50/50 pb-24">
+  <div class="@Ui.Wrap">
+    <div class="mb-10 flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
       <div>
-        <div class="eyebrow">FEATURED LISTINGS</div>
-        <h2 class="listings-title">Handpicked homes with character, comfort, and space to grow</h2>
-        <p class="listings-desc">From sun-drenched family houses to refined modern retreats, these featured properties are designed to feel like home from day one.</p>
+        <div class="mb-3 text-[13px] font-bold text-[#c8703a]">Featured listings</div>
+        <h2 class="@Ui.H2 max-w-[560px]">Handpicked homes with character, comfort, and space to grow</h2>
+        <p class="@Ui.Muted mt-3.5 max-w-[460px]">From sun-drenched family houses to refined modern retreats, these featured properties are designed to feel like home from day one.</p>
       </div>
-      <button class="btn btn-outline">View all listings</button>
-    </div>
-
-    <div class="listings-grid">
-      <div class="listing-card">
-        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Price drop</span></div>
-        <div class="listing-body">
-          <div class="listing-location">
-            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            San Francisco, California
-          </div>
-          <div class="listing-meta">
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>4 Rooms</span>
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>3,500 sq ft</span>
-          </div>
-          <div class="listing-foot">
-            <a href="/register" class="btn btn-dark">Sign up</a>
-            <div class="listing-price">$2,500,000</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="listing-card">
-        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Open House</span></div>
-        <div class="listing-body">
-          <div class="listing-location">
-            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            Beverly Hills, California
-          </div>
-          <div class="listing-meta">
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>3 Rooms</span>
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>1,500 sq ft</span>
-          </div>
-          <div class="listing-foot">
-            <a href="/register" class="btn btn-dark">Sign up</a>
-            <div class="listing-price">$850,000</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="listing-card">
-        <div class="listing-img-wrap"><img src="images/img3.png" alt="Dream Home" /><span class="listing-tag">Price drop</span></div>
-        <div class="listing-body">
-          <div class="listing-location">
-            <span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            Palo Alto, California
-          </div>
-          <div class="listing-meta">
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>6 Rooms</span>
-            <span><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>4,000 sq ft</span>
-          </div>
-          <div class="listing-foot">
-            <a href="/register" class="btn btn-dark">Sign up</a>
-            <div class="listing-price">$3,700,000</div>
-          </div>
-        </div>
+      <div class="flex items-center gap-4">
+        <span class="text-sm font-semibold text-[#6b5d52]" aria-live="polite">@results.Count @(results.Count == 1 ? "home" : "homes")@(favs.Count > 0 ? $" · {favs.Count} saved" : "")</span>
+        @if (loc != "" || ty != "" || price != "")
+        {
+          <button type="button" class="@Ui.BtnLight" @onclick="ResetFilters">Clear filters</button>
+        }
       </div>
     </div>
+
+    @if (results.Count == 0)
+    {
+      <div class="rounded-2xl bg-[#e7d3bc] px-6 py-14 text-center">
+        <p class="text-lg font-bold">No homes match those filters</p>
+        <p class="@Ui.Muted mb-6 mt-1">Try a different location, type, or price range.</p>
+        <button type="button" class="@Ui.BtnDark" @onclick="ResetFilters">Show all homes</button>
+      </div>
+    }
+    else
+    {
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        @foreach (var l in results)
+        {
+          var id = l.Id;
+          var saved = favs.Contains(id);
+          <article class="@Ui.Lift overflow-hidden rounded-2xl bg-[#e7d3bc]">
+            <div class="relative h-[210px]">
+              <svg viewBox="0 0 320 220" preserveAspectRatio="xMidYMax slice" class="size-full" role="img" aria-label="Illustration of a @l.Type.ToLower() in @l.City">
+                <rect width="320" height="220" fill="@l.Sky" />
+                <circle cx="256" cy="62" r="26" fill="#f6ece1" opacity=".85" />
+                <rect y="170" width="320" height="50" fill="@l.Ground" />
+                <path d="M70 170V105l90-55 90 55v65z" fill="#f6ece1" />
+                <path d="M58 110 160 44l102 66" fill="none" stroke="#241812" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="140" y="125" width="40" height="45" rx="3" fill="#c8703a" />
+                <rect x="90" y="118" width="32" height="28" rx="2" fill="#241812" opacity=".8" />
+                <rect x="198" y="118" width="32" height="28" rx="2" fill="#241812" opacity=".8" />
+              </svg>
+              <span class="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold">@l.Tag</span>
+              <button type="button" @onclick="() => ToggleFav(id)" aria-pressed="@(saved ? "true" : "false")" aria-label="@(saved ? "Remove from saved" : "Save this home")"
+                      class="absolute right-3.5 top-3.5 grid size-9 place-items-center rounded-full bg-white transition hover:scale-110 hover:text-[#c8703a]">
+                <Icon Name="heart" Fill="@saved" Class="@(saved ? "size-[18px] text-[#c8703a]" : "size-[18px]")" />
+              </button>
+            </div>
+            <div class="px-5 pb-5 pt-[18px]">
+              <div class="mb-3 flex items-center gap-1.5 text-[15px] font-bold"><Icon Name="pin" Class="size-4 text-[#c8703a]" />@l.City, California</div>
+              <div class="mb-5 flex flex-wrap gap-x-4 gap-y-1">
+                <span class="@Meta"><Icon Name="layout" Class="size-4" />@l.Rooms rooms</span>
+                <span class="@Meta"><Icon Name="area" Class="size-4" />@($"{l.Area:N0} sq ft")</span>
+                <span class="@Meta"><Icon Name="home" Class="size-4" />@l.Type</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-[19px] font-extrabold">@l.Price.ToString("C0", Us)</div>
+                <a href="/register" class="@Ui.BtnDarkSm">Sign up to view</a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
   </div>
 </section>
 
 <!-- ===================== TESTIMONIALS ===================== -->
-<section class="testimonial-section">
-  <div class="wrap">
-    <div class="eyebrow" style="text-align:center;">TRUSTED BY HOMEOWNERS &amp; BUYERS</div>
-    <h2 class="testimonial-title">Curated homes offering unique charm, cozy comfort, and plenty of room to grow</h2>
-
-    <div class="testimonial-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
-        <div class="testimonial-body">
-          <div class="t-user-row">
-            <div class="avatar"><div class="ph-img"></div></div>
-            <div class="t-user-info">
-              <div class="t-name">Sarah Nguyen</div>
-              <div class="t-loc">San Francisco</div>
-            </div>
-            <div class="t-rating">★ 5.0</div>
-          </div>
-          <p class="t-text">Dwello truly cares about their clients. They listened to my needs and preferences and helped me find the perfect home in the Bay Area. Their professionalism and attention to detail are unmatched.</p>
-        </div>
+<section class="py-20 text-center">
+  <div class="@Ui.Wrap">
+    <h2 class="@Ui.H2 mx-auto max-w-[640px]">Trusted by homeowners and buyers</h2>
+    @{ var t = testimonials[tIdx]; }
+    <figure class="mx-auto mt-10 max-w-[720px] rounded-3xl bg-[#e7d3bc] p-7 text-left sm:p-10" aria-live="polite">
+      <div class="flex gap-1 text-[#c8703a]">
+        @for (var i = 0; i < 5; i++)
+        {
+          <Icon Name="star" Fill="@(i < (int)t.Rating)" Class="size-5" />
+        }
       </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
-        <div class="testimonial-body">
-          <div class="t-user-row">
-            <div class="avatar"><div class="ph-img"></div></div>
-            <div class="t-user-info">
-              <div class="t-name">Michael Rodriguez</div>
-              <div class="t-loc">San Diego</div>
-            </div>
-            <div class="t-rating">★ 4.5</div>
-          </div>
-          <p class="t-text">I had a fantastic experience working with Dwello. Their expertise and personalized service exceeded my expectations. I found my dream home quickly and smoothly. Highly recommended!</p>
-        </div>
+      <blockquote class="mt-5 text-[18px] font-semibold leading-[1.6] sm:text-[20px]">“@t.Text”</blockquote>
+      <figcaption class="mt-6 flex items-center gap-3">
+        <span class="grid size-11 place-items-center rounded-full bg-[#241812] text-sm font-bold text-white">@Initials(t.Name)</span>
+        <span>
+          <span class="block text-[15px] font-bold">@t.Name</span>
+          <span class="block text-[13px] font-medium text-[#6b5d52]">@t.City · @t.Rating.ToString("0.0") rating</span>
+        </span>
+      </figcaption>
+    </figure>
+    <div class="mt-8 flex items-center justify-center gap-4">
+      <button type="button" class="@CarouselBtn" aria-label="Previous testimonial" @onclick="PrevT"><Icon Name="chevron-l" /></button>
+      <div class="flex items-center gap-2">
+        @for (var i = 0; i < testimonials.Length; i++)
+        {
+          var n = i;
+          <button type="button" aria-label="Show testimonial @(n + 1)" @onclick="() => tIdx = n"
+                  class="h-2.5 rounded-full bg-[#241812] transition-all @(n == tIdx ? "w-6" : "w-2.5 opacity-25")"></button>
+        }
       </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-img"><img src="images/img4.png" alt="Dream Home" /></div>
-        <div class="testimonial-body">
-          <div class="t-user-row">
-            <div class="avatar"><div class="ph-img"></div></div>
-            <div class="t-user-info">
-              <div class="t-name">Emily Johnson</div>
-              <div class="t-loc">Los Angeles</div>
-            </div>
-            <div class="t-rating">★ 5.0</div>
-          </div>
-          <p class="t-text">Dwello made my dream of owning a home a reality! Their team provided exceptional support and guided me through every step of the process. I couldn't be happier with my new home!</p>
-        </div>
-      </div>
+      <button type="button" class="@CarouselBtn" aria-label="Next testimonial" @onclick="NextT"><Icon Name="chevron-r" /></button>
     </div>
+  </div>
+</section>
 
-    <div class="carousel-dots">
-      <button class="carousel-btn">‹</button>
-      <button class="carousel-btn">›</button>
-    </div>
+<!-- ===================== FAQ ===================== -->
+<section id="faq" class="bg-amber-50/50 py-20">
+  <div class="@Ui.Wrap">
+   <div class="mx-auto max-w-[760px]">
+    <h2 class="@Ui.H2 mb-8 text-center">Frequently asked questions</h2>
+    @for (var i = 0; i < faqs.Length; i++)
+    {
+      var n = i;
+      var open = openFaq == n;
+      <div class="border-b border-[#241812]/10">
+        <button type="button" aria-expanded="@(open ? "true" : "false")" @onclick="() => openFaq = open ? -1 : n"
+                class="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-bold transition hover:text-[#c8703a]">
+          @faqs[n].Item1
+          <Icon Name="chevron-down" Class="@(open ? "size-5 shrink-0 rotate-180 transition" : "size-5 shrink-0 transition")" />
+        </button>
+        @if (open)
+        {
+          <p class="@Ui.Muted pb-5 pr-8">@faqs[n].Item2</p>
+        }
+      </div>
+    }
+   </div>
   </div>
 </section>
 
 <!-- ===================== CTA / NEWSLETTER ===================== -->
-<section class="cta-section">
-  <div class="wrap">
-    <h2 class="cta-title">Do You Have Any Questions?<br>Get Help From Us</h2>
-    <div class="cta-links">
-      <span><span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Chat live with our support team</span>
-      <span><span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Browse our FAQ</span>
+<section id="contact" class="bg-[#e7d3bc]/60 py-20 text-center">
+  <div class="@Ui.Wrap">
+    <h2 class="@Ui.H2">Do you have any questions?<br>Get help from us</h2>
+    <div class="mb-9 mt-6 flex flex-wrap justify-center gap-x-9 gap-y-3 text-sm font-semibold">
+      <a href="mailto:support@hearthstone.example" class="inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="mail" Class="size-4" />Email our support team</a>
+      <a href="#faq" class="inline-flex items-center gap-2 transition hover:text-[#c8703a]"><Icon Name="file" Class="size-4" />Browse our FAQ</a>
     </div>
-    <div class="newsletter-form">
-      <div class="newsletter-input">
-        <span class="icon" style="width:16px;height:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>
-        Enter your email address...
-      </div>
-      <button class="btn btn-dark">Submit</button>
-    </div>
+    @if (subscribed)
+    {
+      <p class="mx-auto flex max-w-[480px] items-center justify-center gap-2 rounded-xl bg-white p-4 text-sm font-semibold" role="status">
+        <Icon Name="check" Class="size-5 shrink-0 text-[#c8703a]" />Thanks! New listings will go to @newsEmail.
+      </p>
+    }
+    else
+    {
+      <form @onsubmit="Subscribe" novalidate class="mx-auto max-w-[480px]">
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <label class="relative flex-1">
+            <span class="sr-only">Email address</span>
+            <Icon Name="mail" Class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-[#8a7b6e]" />
+            <input type="email" @bind="newsEmail" @bind:event="oninput" placeholder="Enter your email address" class="@Ui.FieldIcon" />
+          </label>
+          <button type="submit" class="@Ui.BtnDark">Subscribe</button>
+        </div>
+        @if (newsError is not null)
+        {
+          <p class="mt-2 text-left text-[13px] font-medium text-red-700" role="alert">@newsError</p>
+        }
+      </form>
+    }
   </div>
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
+<footer class="bg-[#e7d3bc] pb-6 pt-[60px]">
+  <div class="@Ui.Wrap">
+    <div class="grid grid-cols-2 gap-8 border-b border-black/10 pb-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
+      <div class="col-span-2 lg:col-span-1">
+        <div class="flex items-center gap-2 text-[19px] font-bold">
+          <span class="h-4 w-[18px] bg-[#241812] [clip-path:polygon(50%_0%,100%_38%,100%_100%,0%_100%,0%_38%)]"></span>Hearthstone
+        </div>
+        <p class="mt-4 max-w-[220px] text-[13.5px] font-medium leading-[1.6] text-[#6b5d52]">Bringing you closer to your dream home, one click at a time.</p>
+      </div>
+      @foreach (var (title, links) in footerCols)
+      {
+        <div>
+          <h4 class="mb-[18px] text-[14.5px] font-bold">@title</h4>
+          <ul class="flex flex-col gap-3.5">
+            @foreach (var link in links)
+            {
+              <li><a class="text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#">@link</a></li>
+            }
+          </ul>
+        </div>
+      }
       <div>
-        <div class="logo"><span class="logo-mark"></span>Hearthstone</div>
-        <p class="footer-desc">Bringing you closer to your dream home, one click at a time.</p>
-      </div>
-      <div class="footer-col">
-        <h4>About</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Our Team</a></li>
-          <li><a href="#">Resources</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Find Us</h4>
-        <ul>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Locations</a></li>
-          <li><a href="#">Newsletter</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Our Social</h4>
-        <ul>
-          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><a href="#">Instagram</a></li>
-          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><a href="#">Facebook</a></li>
-          <li><span class="icon" style="width:15px;height:15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg></span><a href="#">Twitter (X)</a></li>
+        <h4 class="mb-[18px] text-[14.5px] font-bold">Our social</h4>
+        <ul class="flex flex-col gap-3.5">
+          @foreach (var (icon, label) in socials)
+          {
+            <li><a class="flex items-center gap-2 text-[13.5px] font-medium transition hover:text-[#c8703a]" href="#"><Icon Name="@icon" Class="size-[15px]" />@label</a></li>
+          }
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 Hearthstone. All rights reserved.</div>
+    <div class="flex flex-col items-center justify-between gap-3 pt-[22px] text-[12.5px] font-medium text-[#6b5d52] sm:flex-row">
+      <span>© @DateTime.Now.Year Hearthstone. All rights reserved.</span>
+      <a href="#top" class="inline-flex items-center gap-1.5 font-semibold transition hover:text-[#241812]">Back to top <Icon Name="arrow-up" Class="size-3.5" /></a>
+    </div>
   </div>
 </footer>
 
 </div>
 
+@code {
+    const string SearchBox = "flex cursor-pointer items-center gap-3 rounded-xl bg-[#faf4ef] px-4 py-2.5 transition focus-within:bg-white focus-within:ring-4 focus-within:ring-[#c8703a]/20";
+    const string Sel = "w-full cursor-pointer appearance-none bg-transparent text-sm font-semibold outline-none";
+    const string Meta = "flex items-center gap-1.5 text-[13px] font-medium text-[#6b5d52]";
+    const string CarouselBtn = "grid size-11 place-items-center rounded-full bg-[#241812] text-white transition hover:bg-[#c8703a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8703a]";
+
+    record Listing(int Id, string Tag, string City, string Type, int Rooms, int Area, int Price, string Sky, string Ground);
+    record Testimonial(string Name, string City, double Rating, string Text);
+    record Feature(string Icon, string Title, string Text);
+
+    static readonly System.Globalization.CultureInfo Us = new("en-US");
+
+    bool menuOpen, subscribed;
+    int tIdx, openFaq = -1;
+    string loc = "", ty = "", price = "", newsEmail = "";
+    string? newsError;
+    readonly HashSet<int> favs = new();
+
+    IEnumerable<Listing> Filtered => listings.Where(l =>
+        (loc == "" || l.City == loc) &&
+        (ty == "" || l.Type == ty) &&
+        (price switch
+        {
+            "low" => l.Price < 1_000_000,
+            "mid" => l.Price is >= 1_000_000 and <= 3_000_000,
+            "high" => l.Price > 3_000_000,
+            _ => true
+        }));
+
+    void ResetFilters() { loc = ty = price = ""; }
+    void ToggleFav(int id) { if (!favs.Remove(id)) favs.Add(id); }
+    void PrevT() => tIdx = (tIdx + testimonials.Length - 1) % testimonials.Length;
+    void NextT() => tIdx = (tIdx + 1) % testimonials.Length;
+
+    static string Initials(string name) => string.Concat(name.Split(' ').Select(p => p[0]));
+
+    void Subscribe()
+    {
+        newsError = Ui.IsEmail(newsEmail) ? null : "Enter a valid email address.";
+        subscribed = newsError is null;
+    }
+
+    // Data
+    static readonly (string, string)[] nav =
+    {
+        ("Home", "#top"), ("Services", "#why"), ("Listings", "#listings"), ("FAQ", "#faq"), ("Contact", "#contact"),
+    };
+
+    static readonly (string, string)[] stats = { ("8K+", "Houses available"), ("6K+", "Houses sold"), ("2K+", "Trusted agents") };
+
+    static readonly Feature[] features =
+    {
+        new("compass", "Expert guidance", "Benefit from our team's seasoned expertise for a smooth buying experience"),
+        new("sliders", "Personalized service", "Our services adapt to your unique needs, making your journey stress-free"),
+        new("file", "Transparent process", "Stay informed with our clear and honest approach to buying your home"),
+        new("headphones", "Exceptional support", "Providing peace of mind with our responsive and attentive customer service"),
+    };
+
+    static readonly Listing[] listings =
+    {
+        new(1, "Price drop", "San Francisco", "House", 4, 3500, 2_500_000, "#e8c9a8", "#8a9a6b"),
+        new(2, "Open house", "Beverly Hills", "Condo", 3, 1500, 850_000, "#d9b9a0", "#a3946b"),
+        new(3, "Price drop", "Palo Alto", "House", 6, 4000, 3_700_000, "#e3d0b0", "#7f9270"),
+        new(4, "New", "Los Angeles", "Apartment", 2, 1100, 620_000, "#c9b3a0", "#94886a"),
+        new(5, "Open house", "San Diego", "Villa", 5, 3200, 1_450_000, "#ecd2a5", "#8c9b68"),
+        new(6, "Price drop", "San Francisco", "Condo", 2, 1250, 780_000, "#d6bfa9", "#9a9068"),
+    };
+
+    static readonly string[] cities = listings.Select(l => l.City).Distinct().OrderBy(c => c).ToArray();
+    static readonly string[] types = { "House", "Condo", "Apartment", "Villa" };
+
+    static readonly Testimonial[] testimonials =
+    {
+        new("Sarah Nguyen", "San Francisco", 5.0, "Hearthstone truly cares about their clients. They listened to my needs and preferences and helped me find the perfect home in the Bay Area. Their professionalism and attention to detail are unmatched."),
+        new("Michael Rodriguez", "San Diego", 4.5, "I had a fantastic experience working with Hearthstone. Their expertise and personalized service exceeded my expectations. I found my dream home quickly and smoothly. Highly recommended!"),
+        new("Emily Johnson", "Los Angeles", 5.0, "Hearthstone made my dream of owning a home a reality! Their team provided exceptional support and guided me through every step of the process. I couldn't be happier with my new home!"),
+    };
+
+    static readonly (string, string)[] faqs =
+    {
+        ("How do I book a tour?", "Create a free account, save the homes you like, and request a tour from any listing. An agent will confirm a time within one business day."),
+        ("Are the listings updated regularly?", "Yes. New homes are added daily and price changes appear as soon as an agent updates the listing."),
+        ("Do I have to pay to use Hearthstone?", "No. Searching, saving homes, and requesting tours are free for buyers."),
+        ("Can I work with a specific agent?", "Absolutely. Once you sign up, you can browse agent profiles and request the one you prefer."),
+    };
+
+    static readonly (string, string[])[] footerCols =
+    {
+        ("About", new[] { "Our Story", "Careers", "Our Team", "Resources" }),
+        ("Support", new[] { "FAQ", "Contact Us", "Help Center", "Terms of Service" }),
+        ("Find Us", new[] { "Events", "Locations", "Newsletter" }),
+    };
+
+    static readonly (string, string)[] socials = { ("instagram", "Instagram"), ("facebook", "Facebook"), ("twitter", "Twitter (X)") };
+}
